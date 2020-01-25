@@ -1,10 +1,10 @@
 pipeline {
     agent any
 	
-    tools
+    tools{
         maven 'mvn339'
         jdk 'jdk8'
-    }
+    }  
     stages {
         stage ('Initialize') {
             steps {
@@ -31,7 +31,8 @@ pipeline {
 				googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "build successful for *${env.JOB_NAME}* ...")               
                   }
                }
-
+            }
+        }
 
 //         stage("Deploy to S3"){
 //             steps {

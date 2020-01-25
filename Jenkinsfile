@@ -1,6 +1,6 @@
 def folderName = "dist/br-form-capture-portal"
-#def stagbucketName = "stagingforms.bioregistra.com"
-def prodbucketName = "forms.bioregistra.com"
+#def stagbucketName = "test.djohn.com"
+def prodbucketName = "test.djohn.com"
 pipeline {
     agent any
     stages {

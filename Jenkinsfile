@@ -1,17 +1,21 @@
 pipeline {
     agent any
-	
+	environment {
+        //variable for image name
+        PROJECT = "test"
+        APP = "jHipster"
+	}
     tools{
         maven 'mvn339'
         jdk 'jdk8'
     }  
     stages {
-//        stage ('Initialize') {
-//            steps {
-//                deleteDir()
-//                googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "Initializing build process for *${env.JOB_NAME}* ...")
-//            }   
-//        }
+        stage ('Initialize') {
+            steps {
+                deleteDir()
+                googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "Initializing build process for *${env.JOB_NAME}* ...")
+            }   
+        }
         stage ('Clean WorkSpace') {
             steps {
                 checkout scm
@@ -28,7 +32,7 @@ pipeline {
                 echo 'Running build automation'
                 sh 'mvn clean package -U -DskipTests'
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-				//googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "build successful for *${env.JOB_NAME}* ...")               
+				googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "build successful for *${env.JOB_NAME}* ...")               
                   }
                }
             }

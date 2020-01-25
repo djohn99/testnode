@@ -24,11 +24,11 @@ pipeline {
                             env.VERSION = env.OLD_VERSION + '-' + env.BUILD_NUMBER
                         }
                         sh 'mvn versions:set -DnewVersion=$VERSION versions:commit'
-                        sh 'mvn clean package -U -Ddockerfile.skip -DskipTests'
+                        //sh 'mvn clean package -U -Ddockerfile.skip -DskipTests'
                 echo 'Running build automation'
                 sh 'mvn clean package -U -DskipTests'
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-				googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "build successful for *${env.JOB_NAME}* ...")               
+				//googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "build successful for *${env.JOB_NAME}* ...")               
                   }
                }
             }

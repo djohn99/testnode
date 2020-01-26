@@ -1,3 +1,5 @@
+// This layer of code speicfies the variables for the target folder where the artifact is built, 
+//the prod environment where master branch is deployed to and a dev environment where other branches are deployed to.
 def folderName = "target"
 def stagbucketName = "test.djohn.com"
 def prodbucketName = "dev.djohn.com"
@@ -37,7 +39,7 @@ pipeline {
 				googlechatnotification (url: 'https://chat.googleapis.com/v1/spaces/AAAA0ee8BzY/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=xBeysykpKmXGcR7l84Wv9nVphU2-OcT3uRRRqUPBiv0%3D', message: "build successful for *${env.JOB_NAME}* ...")               
                   }
                }
-
+    // This layer of code speicfies where the target folder is deploy to,
         stage ('Deploy to S3') {
             steps {
                 script{

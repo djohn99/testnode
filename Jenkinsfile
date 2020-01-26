@@ -1,6 +1,6 @@
 def folderName = "target"
-def stagbucketName = "dev.djohn.com"
-def prodbucketName = "test.djohn.com"
+def stagbucketName = "test.djohn.com"
+def prodbucketName = "dev.djohn.com"
 pipeline {
     agent any
 	environment {

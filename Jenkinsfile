@@ -39,7 +39,7 @@ pipeline {
                }
             }
 
-        stage("Deploy to S3"){
+        stage('Deploy to S3'){
             steps {
                 script{
                     try {
